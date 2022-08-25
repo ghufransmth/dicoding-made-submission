@@ -12,9 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.favorite.databinding.FragmentFavoriteBinding
 import com.example.made_1.Detail.DetailActivity
-import com.example.made_1.Di.FavoriteModuleDependencies
 import com.example.made_1.Home.HomeAdapter
-import dagger.hilt.android.EntryPointAccessors
 import javax.inject.Inject
 
 class FavoriteFragment : Fragment() {
@@ -36,16 +34,16 @@ class FavoriteFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        DaggerFavoriteComponent.builder()
-            .context(context)
-            .appDependencies(
-                EntryPointAccessors.fromApplication(
-                    context.applicationContext,
-                    FavoriteModuleDependencies::class.java
-                )
-            )
-            .build()
-            .inject(this)
+//        DaggerFavoriteComponent.builder()
+//            .context(context)
+//            .appDependencies(
+//                EntryPointAccessors.fromApplication(
+//                    context.applicationContext,
+//                    FavoriteModuleDependencies::class.java
+//                )
+//            )
+//            .build()
+//            .inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

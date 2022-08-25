@@ -25,7 +25,6 @@ class DetailActivity : AppCompatActivity() {
 
     private var isFavorite = false
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var detailCreator: Creator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +37,13 @@ class DetailActivity : AppCompatActivity() {
 
         if (detailCreator != null) {
             Log.w("getId",""+detailCreator.id)
-            detailViewModel.getDetailCreator(detailCreator.id).observe(this) { detailCreator ->
-                when (detailCreator) {
+            detailViewModel.getDetailCreator(detailCreator.id).observe(this) { detCreator ->
+                when (detCreator) {
                     is Resource.Loading -> showLoading(true)
                     is Resource.Success -> {
-                        Log.w("getData", "" + detailCreator.data)
-                        val dataCreator = detailCreator.data as Creator
-                        detailViewModel.getDetailState(dataCreator.id)?.observe(this, { user ->
+                        Log.w("getData", "" + detCreator.data)
+                        val dataCreator = detCreator.data as Creator
+                        detailViewModel.getDetailState(dataCreator.id)?.observe(this) { user ->
                             isFavorite = user.isFavorite == true
                             setStatusFavorite(isFavorite)
                             binding.fab.setOnClickListener {
@@ -52,13 +51,13 @@ class DetailActivity : AppCompatActivity() {
                                 detailViewModel.setFavoriteCreator(user)
                                 setStatusFavorite(isFavorite)
                             }
-                        })
+                        }
                         populateData(dataCreator)
                         showLoading(false)
 
                     }
                     is Resource.Error -> {
-                        Toast.makeText(this, "error : ${detailCreator.message}", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, "error : ${detCreator.message}", Toast.LENGTH_SHORT)
                             .show()
                         showLoading(false)
                     }
@@ -69,7 +68,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun populateData(detailCreator: Creator) {
-        detailCreator?.let {
+        detailCreator.let {
             supportActionBar?.title = detailCreator.name
 
             Glide.with(this@DetailActivity)
