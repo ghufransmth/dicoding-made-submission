@@ -25,6 +25,10 @@ android {
         buildConfigField("String", "PASSPHRASE", "\"made1\"")
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
