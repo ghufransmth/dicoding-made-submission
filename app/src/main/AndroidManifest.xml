@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.made_1">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.made_1"
+    tools:ignore="OldTargetApi">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="31" />
 
     <application
         android:name=".App"
