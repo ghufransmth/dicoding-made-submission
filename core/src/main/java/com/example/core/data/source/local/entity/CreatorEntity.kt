@@ -25,7 +25,7 @@ data class CreatorEntity(
     val image_background : String?,
 
     @ColumnInfo(name = "description")
-    val description : String,
+    val description : String?,
 
     @ColumnInfo(name = "games_count")
     val games_count : Int,
@@ -34,7 +34,7 @@ data class CreatorEntity(
     val reviews_count : Int,
 
     @ColumnInfo(name = "rating")
-    val rating : String,
+    val rating : String?,
 
     @ColumnInfo(name = "positions")
     val positions : String,

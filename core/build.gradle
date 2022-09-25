@@ -21,11 +21,18 @@ android {
         buildConfigField("String", "HOSTNAME", "\"api.rawg.io\"")
         buildConfigField("String", "DB", "\"Creator.db\"")
         buildConfigField("String", "PASSPHRASE", "\"made1\"")
+        buildConfigField("String", "PIN_A", "\"sha256/6i+nf58l8neEnNarZOvxiYfVbt2S2xurswGQQBBMa0U=\"")
+        buildConfigField("String", "PIN_B", "\"sha256/FEzVOUp4dF3gI0ZVPRJhFbSJVXR+uQmMH65xhs1glH4=\"")
+        buildConfigField("String", "PIN_C", "\"sha256/Y9mvm0exBk1JoQ57f9Vm28jKo5lFm/woKcVxrYxu80o=\"")
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -53,6 +60,10 @@ dependencies {
     api "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    //sqlcipher
+    implementation "net.zetetic:android-database-sqlcipher:4.4.0"
+    implementation "androidx.sqlite:sqlite-ktx:2.1.0"
 
     api "androidx.fragment:fragment-ktx:$fragment_ktx_version"
     api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
