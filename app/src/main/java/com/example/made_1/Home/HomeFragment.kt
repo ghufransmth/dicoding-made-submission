@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
 
-            homeViewModel.creator.observe(viewLifecycleOwner, { creator ->
+            homeViewModel.creator.observe(viewLifecycleOwner) { creator ->
                 if (creator != null) {
                     when (creator) {
                         is Resource.Loading -> {
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
                         }
                     }
                 }
-            })
+            }
 
             with(binding.rv) {
                 layoutManager = LinearLayoutManager(context)

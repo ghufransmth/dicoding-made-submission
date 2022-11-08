@@ -7,37 +7,34 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 31
+        targetSdkVersion 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField("String", "BASE_URL", "\"https://api.rawg.io/api/\"")
-        buildConfigField("String", "HOSTNAME", "\"api.rawg.io\"")
-        buildConfigField("String", "DB", "\"Creator.db\"")
-        buildConfigField("String", "PASSPHRASE", "\"made1\"")
-        buildConfigField("String", "PIN_A", "\"sha256/6i+nf58l8neEnNarZOvxiYfVbt2S2xurswGQQBBMa0U=\"")
-        buildConfigField("String", "PIN_B", "\"sha256/FEzVOUp4dF3gI0ZVPRJhFbSJVXR+uQmMH65xhs1glH4=\"")
-        buildConfigField("String", "PIN_C", "\"sha256/Y9mvm0exBk1JoQ57f9Vm28jKo5lFm/woKcVxrYxu80o=\"")
+        buildConfigField("String", 'BASE_URL', "\"https://api.rawg.io/api/\"")
+        buildConfigField("String", 'HOSTNAME', "\"api.rawg.io\"")
+        buildConfigField("String", 'DB', "\"Creator.db\"")
+        buildConfigField("String", 'PASSPHRASE', "\"made1\"")
+        buildConfigField("String", 'PIN_A', "\"sha256/6i+nf58l8neEnNarZOvxiYfVbt2S2xurswGQQBBMa0U=\"")
+        buildConfigField("String", 'PIN_B', "\"sha256/FEzVOUp4dF3gI0ZVPRJhFbSJVXR+uQmMH65xhs1glH4=\"")
+        buildConfigField("String", 'PIN_C', "\"sha256/Y9mvm0exBk1JoQ57f9Vm28jKo5lFm/woKcVxrYxu80o=\"")
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-    lint {
-        baseline = file("lint-baseline.xml")
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11

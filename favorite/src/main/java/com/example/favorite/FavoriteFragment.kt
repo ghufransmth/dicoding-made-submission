@@ -61,13 +61,13 @@ class FavoriteFragment : Fragment() {
                 startActivity(intent)
             }
 
-            favoriteViewModel.favoriteCreators.observe(viewLifecycleOwner, { favoriteCreators ->
+            favoriteViewModel.favoriteCreators.observe(viewLifecycleOwner) { favoriteCreators ->
                 if (favoriteCreators.isEmpty()) {
                     favoriteCreatorAdapter.setData(favoriteCreators)
                 } else {
                     favoriteCreatorAdapter.setData(favoriteCreators)
                 }
-            })
+            }
 
             val marginVertical = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
 

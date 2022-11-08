@@ -6,35 +6,7 @@
     tools:context=".Home.HomeFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:id="@+id/lay_parent"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        app:cardElevation="0dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <androidx.appcompat.widget.SearchView-->
-<!--            android:id="@+id/search"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:focusable="true"-->
-<!--            app:iconifiedByDefault="false"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:queryBackground="@null"-->
-<!--            app:queryHint="Input Creator Name Here.."-->
-<!--            app:showDividers="end" />-->
-<!--    </androidx.cardview.widget.CardView>-->
-
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-
         android:id="@+id/refreshx"
         android:layout_width="0dp"
         android:layout_height="0dp"

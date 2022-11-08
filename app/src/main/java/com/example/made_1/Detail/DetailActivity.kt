@@ -84,7 +84,7 @@ class DetailActivity : AppCompatActivity() {
             binding.content.description.text = detailCreator.description
             binding.content.gamesCount.text = detailCreator.games_count.toString()
             binding.content.reviewsCount.text = detailCreator.reviews_count.toString()
-            binding.content.ratingBar.rating = if(detailCreator.rating.length > 0 ) detailCreator.rating.toFloat() else 0F
+            binding.content.ratingBar.rating = if(detailCreator.rating.isNotEmpty()) detailCreator.rating.toFloat() else 0F
             binding.content.ratingBar.numStars = 5
 
         }
