@@ -1,5 +1,6 @@
 package com.example.made_1.Detail
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -33,7 +34,11 @@ class DetailActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val detailCreator = intent.getParcelableExtra<Creator>(EXTRA_DATA)
+        val detailCreator = if (Build.VERSION.SDK_INT >= 33) {
+            intent.getParcelableExtra(EXTRA_DATA, Creator::class.java)
+        } else {
+            intent.getParcelableExtra<Creator>(EXTRA_DATA)
+        }
 
         if (detailCreator != null) {
             Log.w("getId",""+detailCreator.id)
