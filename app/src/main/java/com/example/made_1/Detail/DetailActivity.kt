@@ -3,12 +3,14 @@ package com.example.made_1.Detail
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.core.data.source.Resource
 import com.example.core.domain.model.Creator
 import com.example.made_1.R
@@ -19,11 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
     private val detailViewModel: DetailViewModel by viewModels()
-
-    companion object {
-        const val EXTRA_DATA = "extra_data"
-    }
-
     private var isFavorite = false
     private lateinit var binding: ActivityDetailBinding
 
@@ -76,21 +73,17 @@ class DetailActivity : AppCompatActivity() {
         detailCreator.let {
             supportActionBar?.title = detailCreator.name
 
-            Glide.with(this@DetailActivity)
-                .load(detailCreator.image_background)
-                .into(binding.ivDetailImage)
+            binding?.apply {
+                ivDetailImage.loadImage(detailCreator.image_background)
+                content.imageView2.loadImage(detailCreator.image)
 
-            Glide.with(this@DetailActivity)
-                .load(detailCreator.image)
-                .circleCrop()
-                .into(binding.content.imageView2)
-
-            binding.content.name.text = detailCreator.name
-            binding.content.description.text = detailCreator.description
-            binding.content.gamesCount.text = detailCreator.games_count.toString()
-            binding.content.reviewsCount.text = detailCreator.reviews_count.toString()
-            binding.content.ratingBar.rating = if(detailCreator.rating.isNotEmpty()) detailCreator.rating.toFloat() else 0F
-            binding.content.ratingBar.numStars = 5
+                content.name.text = detailCreator.name
+                content.description.text = detailCreator.description
+                content.gamesCount.text = detailCreator.games_count.toString()
+                content.reviewsCount.text = detailCreator.reviews_count.toString()
+                content.ratingBar.rating = if(detailCreator.rating.isNotEmpty()) detailCreator.rating.toFloat() else 0F
+                content.ratingBar.numStars = 5
+            }
 
         }
     }
@@ -106,5 +99,14 @@ class DetailActivity : AppCompatActivity() {
     private fun showLoading(state: Boolean) {
         binding.progressBar.isVisible = state
         binding.appBar.isVisible = !state
+    }
+
+    fun ImageView.loadImage(url: String?) {
+        Glide.with(this.context) .load(url) .apply(
+        RequestOptions().override(500, 500)) .centerCrop() .into(this)
+    }
+
+    companion object {
+        const val EXTRA_DATA = "extra_data"
     }
 }

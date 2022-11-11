@@ -12,11 +12,5 @@ class DetailViewModel @Inject constructor(private val creatorUseCase: CreatorUse
     fun getDetailCreator(id: Int) = creatorUseCase.getDetailCreatorRemote(id).asLiveData()
     fun setFavoriteCreator(creator: Creator) = creatorUseCase.setFavoriteCreator(creator)
     fun getDetailState(id: Int) = creatorUseCase.getDetailState(id)?.asLiveData()
-    //fun insertFavorite(creator: Creator) = viewModelScope.launch {
-    //    creatorUseCase.insertCreator(creator)
-    //}
 
-    //fun deleteFavorite(creator: Creator) = viewModelScope.launch {
-    //    creatorUseCase.deleteCreator(creator)
-    //}
 }

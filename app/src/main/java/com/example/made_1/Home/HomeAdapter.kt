@@ -3,6 +3,7 @@ package com.example.made_1.Home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -17,9 +18,10 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     fun setData(newListData: List<Creator>?) {
         if (newListData == null) return
+        val diffResult = DiffUtil.calculateDiff(CreatorDiffUtilCallback(listData, newListData))
         listData.clear()
         listData.addAll(newListData)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder =
@@ -57,5 +59,28 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
                 onItemClick?.invoke(listData[adapterPosition])
             }
         }
+    }
+
+    class CreatorDiffUtilCallback(private val oldList: List<Creator>, private val newList: List<Creator>) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int {
+            return oldList.size
+        }
+
+        override fun getNewListSize(): Int {
+            return newList.size
+        }
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].id == newList[newItemPosition].id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return when {
+                oldList[oldItemPosition].id == newList[newItemPosition].id -> true
+                oldList[oldItemPosition].name == newList[newItemPosition].name -> true
+                else -> false
+            }
+        }
+
     }
 }
